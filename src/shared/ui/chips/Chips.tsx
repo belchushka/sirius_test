@@ -14,11 +14,7 @@ export const Chips = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const childrenRefs = useRef<Array<HTMLLabelElement>>([]);
 
-  const [showPopOver, setShowPopOver] = useState(false);
-
-  const togglePopover = ()=>setShowPopOver(state=>!state)
-
-  const {overflowsFrom} = useFold({
+  const {overflowsFrom, togglePopover, setShowPopOver, showPopOver} = useFold({
     containerRef,
     childrenRefs,
     childrenLength: childrenArr.length

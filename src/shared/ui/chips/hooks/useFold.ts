@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState} from "react";
+import {useLayoutEffect, useState} from "react";
 import React from "react";
 
 type Params = {
@@ -12,25 +12,30 @@ export const useFold = ({
                           childrenLength
                         }: Params) => {
   const [overflowsFrom, setOverflowsFrom] = useState(childrenLength)
+  const [showPopOver, setShowPopOver] = useState(false);
+
+  const togglePopover = ()=>setShowPopOver(state=>!state)
 
   useLayoutEffect(() => {
     const childrenWidths = childrenRefs.current.map(el => el?.getBoundingClientRect()?.width || 0)
     const observerCallback = () => {
+      setShowPopOver(false)
       if (containerRef.current) {
         const containerWidth = containerRef.current.getBoundingClientRect().width
         let total = 60;
         for (let i = 0; i < childrenWidths.length; i++) {
           const currentWidth = childrenWidths[i]
-          if (currentWidth) {
-            const newTotal = total + currentWidth + 10;
-
-            if (newTotal > containerWidth) {
-              setOverflowsFrom(i)
-              return
-            }
-
-            total = newTotal
+          if (!currentWidth) {
+            continue
           }
+
+          const newTotal = total + currentWidth + 10;
+          if (newTotal > containerWidth) {
+            setOverflowsFrom(i)
+            return
+          }
+
+          total = newTotal
         }
         setOverflowsFrom(childrenLength)
       }
@@ -43,6 +48,9 @@ export const useFold = ({
   }, [])
 
   return {
-    overflowsFrom
+    overflowsFrom,
+    togglePopover,
+    setShowPopOver,
+    showPopOver
   }
 }
