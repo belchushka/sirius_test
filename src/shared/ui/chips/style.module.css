@@ -1,0 +1,58 @@
+
+.chips_container {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.chip {
+    display: inline-block;
+    background: #eae8e8;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    transition: .2s background-color;
+}
+
+.chip_selected {
+    background: #19d119;
+}
+
+.chip p {
+    color: black;
+    font-family: "Arial";
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.chip_selected p {
+    color: white;
+}
+
+.chip input {
+    display: none;
+}
+
+.show_more {
+    background: #dcdcdc;
+    padding: 10px 5px;
+    cursor: pointer;
+    flex-basis: 60px;
+    display: flex;
+    border-radius: 20px;
+    flex-shrink: 0;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.rest_chips_list {
+    background: white;
+    padding: 20px;
+    border: 1px solid rgba(128, 128, 128, 0.46);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-radius: 10px;
+
+}
